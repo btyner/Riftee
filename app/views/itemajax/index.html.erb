@@ -1,0 +1,103 @@
+<div id="PullItem">
+<div id="ResultItem">
+		<div class="itemdetail <%= @arrItem['rarity'] %>"><%= @arrItem['name'] %></div>
+		<div><%= @arrItem['soulboundtrigger']%></div>
+		<div style="width:224px;">
+			<div style="width:90px;float:left;"><%= @arrItem['slot']%></div>
+			<div style="width:134px;float:right;text-align:right;"><%= @arrItem['type']%></div>
+		</div>
+		<div style="clear:both;"></div>
+		<div class="separator"></div>
+		<% if !@arrItem['armor'].blank? %>
+			<div>Armor <%= @arrItem['armor']%></div>
+		<% end %>
+		<% if !@arrItem['dps'].blank? %>
+			<div>Damage Per Second: <%= @arrItem['dps']%></div>
+		<% end %>
+		<% if !@arrItem['dmgspecs'].blank? %>
+			<div><%= @arrItem['dmgspecs']%></div>
+		<% end %>
+		<% if !@arrItem['range'].blank? && @arrItem['range'] != 3 %>
+			<div><%= @arrItem['range']%> Meter Range</div>
+		<% end %>
+		<% if !@arrItem['onequiptext'].blank? %>
+			<div style="width: 230px;">Equip: <%= @arrItem['onequiptext']%></div>
+		<% end %>
+		<% if !@arrItem['maxstacksize'].blank? %>
+			<div>Max Stack Size: <%= @arrItem['maxstacksize']%></div>
+		<% end %>
+		<% if !@arrItem['armor'].blank? || !@arrItem['dps'].blank? || !@arrItem['onequiptext'].blank? %>
+			<div class="separator"></div>
+		<% end %>
+		<% if !@arrItem['attributes'].blank? %>
+			<div>
+				<% @arrItem['attributes'].each do |att| %>
+						<%= att['name'] %> +<%= att['value'] %><br />
+				<% end %>
+			</div>
+		<% end %>		
+		<% if !@arrItem['ability'].blank? %>
+			<div><%= @arrItem['ability']%></div>
+		<% end %>
+		<% if !@arrItem['flavortext'].blank? %>
+			<div class="flavortext"><%= @arrItem['flavortext']%></div>
+		<% end %>
+		<% if !@arrItem['attributes'].blank? || !@arrItem['ability'].blank? || !@arrItem['flavortext'].blank? %>
+			<div class="separator"></div>
+		<% end %>
+		<% if !@arrItem['requiredlevel'].blank? %>
+			<div>Requires Level: <%= @arrItem['requiredlevel']%></div>
+		<% end %>
+		<% if !@arrItem['requiredpvprank'].blank? %>
+			<div>Requires Prestige Rank: <%= @arrItem['requiredpvprank']%></div>
+		<% end %>
+		<% if !@arrItem['requiredfaction'].blank? %>
+			<div>Requires <%= @arrItem['requiredfaction']%>: <%= @arrItem['requiredfactionlevel']%></div>
+		<% end %>
+		<% if !@arrItem['runebreakskilllevel'].blank? %>
+			<div>Runebreakable (Runecrafting <%= @arrItem['runebreakskilllevel']%>)</div>
+		<% end %>
+		<% if !@arrItem['salvageskill'].blank? %>
+			<div>Salvageable: (<%= @arrItem['salvageskill']%> <%= @arrItem['salvageskilllevel']%>)</div>
+		<% end %>
+		<% 
+				if !@arrItem['requiredcallings'].blank?
+					tempArr = Array.new
+					sArr = String.new
+					tempArr = @arrItem['requiredcallings']
+					if tempArr.length > 1
+						sArr = tempArr.join(", ")
+					else
+						sArr = tempArr.join
+					end
+		%>
+			<div>Callings: <%= sArr %></div>
+		<% end %>
+		<% if @arrItem['value'] > 0 %>
+			<div class="ValueBox">
+			<%
+				strValue = @arrItem['value'].to_s
+				arrValue = strValue.scan(/../)
+				
+				case arrValue.length
+				when 1
+			%>
+					<div style="float:right"><div class="silver"><%= arrValue[0] %></div></div>
+			<%
+				when 2
+			%>
+					<div style="float:right"><div class="gold"><%= arrValue[0] %></div><div class="silver"><%= arrValue[1] %></div></div>
+			<%	
+				when 3
+			%>
+				 <div style="float:right"><div class="platinum"><%= arrValue[0] %></div><div class="gold"><%= arrValue[1] %></div><div class="silver"><%= arrValue[2] %></div></div>
+			<%	
+				end
+			%>
+			</div>
+		<% else %>
+			<div class="ValueBox"><div style="float:right">No Value</div></div>
+		<% end %>	
+</div>
+<div id="ResultItemCap"></div>
+</div>

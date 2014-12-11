@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Riftee</title>
+  <%= stylesheet_link_tag :all %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<div id="MasterContainer">
+	<div id="HeaderContainer"></div>
+	<div id="BodyContainer">
+		<%= yield %>
+	</div>	
+</div>
+</body>
+</html>

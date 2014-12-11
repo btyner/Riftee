@@ -1,0 +1,13 @@
+<div id="SearchContainer" style="padding:12px;">
+	<h1>XPath Query</h1>
+	<div id="SearchBar">
+		<%= form_tag({:controller => "queryxml", :action => "index"}, :method => "get") do %>
+		  <%= label_tag(:q, "XPath:") %>
+		  <%= text_field_tag(:q) %>
+		  <%= submit_tag "Search", :name => nil %>
+		<% end %>
+		<br /><br />
+			<textarea style="width: 950px;height:700px;background-color: #222;color: #CCCCBB;"><%= @xml %></textarea>
+
+	</div>	
+</div>

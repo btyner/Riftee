@@ -1,0 +1,58 @@
+<h1>Weapons</h1>
+<table cellpadding="4" cellspacing="0" border="1">
+	<tr>
+		<td>Item Key</td>
+		<td>Name</td>
+		<td>Flavor Text</td>
+		<td>Value</td>
+		<td>Rarity</td>
+		<td>Soulbound Trigger</td>
+		<td>Icon</td>
+		<td>Slot</td>
+		<td>Weapon Type</td>
+		<td>Minimum Damage</td>
+		<td>Maximum Damage</td>
+		<td>Speed</td>
+		<td>Range</td>
+		<td>Required Level</td>
+		<td>Runebreak Skill Level</td>
+		<td>Enhancement</td>
+	</tr>
+<% @weapons.each do |x| %>
+	<tr>		
+	<td><%= x['itemkey'] %></td>
+	<td><%= x['name'] %></td>
+	<td><%= x['flavortext'] %></td>
+	<td><%= x['value'] %></td>
+	<td>
+		<% x['rarity'].each do |z| %>
+			<div><%= z.id %></div>
+		<% end %>
+	</td>
+	<td>
+		<% x['soulboundtrigger'].each do |z| %>
+			<div><%= z.id %></div>
+		<% end %>
+	</td>
+	<td><%= x['icon'] %></td>
+	<td><%= x['slot'] %></td>
+	<td>
+		<% x['weapontype'].each do |z| %>
+			<div><%= z.id %></div>
+		<% end %>
+	</td>
+	<td><%= x['minimumdamage'] %></td>
+	<td><%= x['maximumdamage'] %></td>
+	<td><%= x['speed'] %></td>
+	<td><%= x['range'] %></td>
+	<td><%= x['requiredlevel'] %></td>
+	<td><%= x['runebreakskilllevel'] %></td>
+	<td>
+		<% x['enhancement'].each do |z| %>
+			<div><%= z.id %></div>
+		<% end %>
+	</td>
+	</tr>
+<% end %>
+</table>
+
