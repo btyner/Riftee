@@ -4,7 +4,7 @@ class Weapon < ActiveRecord::Base
   belongs_to :soulboundtrigger
   validates :name, presence: true
   validates :icon, presence: true
-  validates :speed, format: { with: /\d{1}\.\d{1}/, message: "Please specify a speed in the format 0.0" }
+  validates :speed, format: { with: /\A\d{1}\.\d{1}\z/, message: "Please specify a speed in the format 0.0" }
   validates :minimumdamage, presence: true, numericality: true
   validates :maximumdamage, presence: true, numericality: true
   validates :requiredlevel, presence: true, numericality: true
