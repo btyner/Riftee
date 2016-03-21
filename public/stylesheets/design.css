@@ -2,7 +2,7 @@ body{background-color:#000000;font-family:Arial, Helvetica, sans-serif;font-size
 
 #MasterContainer {width:960px;margin:0px auto;background-color: #333;}
 
-#icon-cover {width:44px;height:44px;background: url(/images/icon-cover.png) no-repeat;position:absolute;top:-13px;left:2px;z-index: 100;}
+#icon-cover {width:44px;height:44px;background: url(/images/icon-cover.png) no-repeat;position:absolute;top:-4px;left:2px;z-index: 100;}
 .itemdetail {font-size:15px;width:224px;margin:4px 0px;line-height: 14px;}
 
 .Quest {color:#F8F001;text-decoration: none;}
@@ -33,6 +33,14 @@ body{background-color:#000000;font-family:Arial, Helvetica, sans-serif;font-size
 .gold {background-position: 12px -16px;}
 .platinum {background-position: 12px -32px;}
 
+.coin {
+	float:left;
+}
+.coin .value {
+	float:left;
+	width: 55px;
+}
+
 #PopupContainer  
 {  
     position:absolute;  
@@ -43,4 +51,65 @@ body{background-color:#000000;font-family:Arial, Helvetica, sans-serif;font-size
     width: 256px;
     min-height: 200px
     background-color: #fff;  
+}
+
+.create-item {
+	margin:20px auto 40px;
+}
+
+.loaded-icon {
+    width:50px;
+    height:50px;
+    border:solid 1px #555555;
+    display:inline-block;
+    margin:0 4px 0 0;
+    vertical-align: middle;
+}
+
+.icon-box {
+    position:relative;
+}
+.icon-list {
+    position:absolute;
+    top:-32px;
+    left: 150px;
+    z-index:200;
+    width:340px;
+    height:334px;
+    overflow:auto;
+    display: none;
+    background-color:#000000;
+    border:solid 4px #444444;
+}
+.icon-list .close-icon {
+    background-color:#444444;
+    padding:4px 8px;
+    color:#cccccc;
+    font-size:12px;
+    font-weight: bold;
+    cursor:pointer;
+    position:fixed;
+}
+.icon-list .close-icon:hover {
+    color:#dc9204;
+}
+.icon-list ul {
+    margin:0 0 0 24px;
+    padding:0;
+    list-style:none;
+}
+.icon-list .twohand {
+    display:none;
+}
+.icon-list ul li {
+    padding:4px;
+    float:left;
+}
+.icon-list ul li img {
+    display:block;
+    border:solid 1px #000000;
+    cursor:pointer;
+}
+.icon-list ul li img:hover {
+    border:solid 1px #dc9204;
 }

@@ -1,6 +1,6 @@
 namespace :db do
   desc "Erase and fill database"
-  task :weapons => :environment do
+  task :weapontypes => :environment do
     require 'nokogiri'
     
     [Weapontype].each(&:delete_all)

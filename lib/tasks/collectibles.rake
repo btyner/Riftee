@@ -17,7 +17,7 @@ namespace :db do
       x.icon = n.xpath('Icon').text
       x.description = n.xpath('Description/English').text
       x.onuse = n.xpath('OnUse/Ability/English').text
-      x.itemtype = n.xpath('Collectible').text
+      x.type = n.xpath('Collectible').text
       x.maxstacksize = n.xpath('MaxStackSize').text
       x.requiredlevel = n.xpath('RequiredLevel').text
       x.requiredfaction = n.xpath('RequiredFaction').text

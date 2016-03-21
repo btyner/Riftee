@@ -12,7 +12,7 @@ development:
   database: riftee_development
   pool: 5
   username: root
-  password: l3nn0x79!
+  password:
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -25,7 +25,7 @@ test:
   database: riftee_test
   pool: 5
   username: root
-  password: l3nn0x79!
+  password:
   socket: /tmp/mysql.sock
 
 production:
@@ -35,6 +35,6 @@ production:
   database: riftee_production
   pool: 5
   username: root
-  password: l3nn0x79!
+  password:
   socket: /tmp/mysql.sock
 

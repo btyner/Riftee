@@ -29,7 +29,7 @@ namespace :db do
         arrRarity.each do |i|
           @keyRarity = i.id
         end  
-        pf.rarity_id = @keyRarity
+        pf.rarities_id = @keyRarity
         # Lookup SoulboundTrigger ID to add
         arrST = Soulboundtrigger.select('id').where("name = ?",n.xpath('SoulboundTrigger').text)
         arrST.each do |i|

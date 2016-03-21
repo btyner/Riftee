@@ -11,7 +11,7 @@ namespace :db do
       
       x = Consumable.new
       x.itemkey = n.xpath('ItemKey').text
-      x.itemtype = "Miscellaneous"
+      x.type = "Miscellaneous"
       x.name = n.xpath('Name/English').text
       x.flavortext = n.xpath('FlavorText/English').text
       x.value = n.xpath('Value').text        
@@ -30,15 +30,15 @@ namespace :db do
       # Apply ItemTypes
       #Quest Item
       if n.xpath('count(IsQuestItem) > 0')
-        x.itemtype = "Quest Item"
+        x.type = "Quest Item"
       end
       #Recipe
       if n.xpath('count(RequiredSecondarySkill) > 0')
-        x.itemtype = "Recipe"
+        x.type = "Recipe"
       end
       #Currency
       if n.xpath('count(IsCurrency) > 0')
-        x.itemtype = "Currency"
+        x.type = "Currency"
       end
       #Rune (Set up another task to set up Allowed Slots)
       if n.xpath('count(OnUse/RuneAllowedSlots/Slot)>=1')
@@ -48,7 +48,7 @@ namespace :db do
           end
           x.allowed = arrAllowed
           x.requireditemlevel = n.xpath('OnUse/RequiredItemLevel').text
-          x.itemtype = "Rune"
+          x.type = "Rune"
         
       end
       if n.xpath('count(OnUse/RuneAllowedWeaponType/ItemType)>=1')
@@ -58,7 +58,7 @@ namespace :db do
           end
           x.allowed = arrAllowed
           x.requireditemlevel = n.xpath('OnUse/RequiredItemLevel').text
-          x.itemtype = "Rune"
+          x.type = "Rune"
       end
       #Regular Inventory
             
@@ -67,7 +67,7 @@ namespace :db do
         arrRarity.each do |i|
           @keyRarity = i.id
         end  
-        x.rarity_id = @keyRarity
+        x.rarities_id = @keyRarity
         # Lookup SoulboundTrigger ID to add
         arrST = Soulboundtrigger.select('id').where("name = ?",n.xpath('SoulboundTrigger').text)
         arrST.each do |i|

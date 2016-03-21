@@ -1,0 +1,139 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<h1>Add a new sword</h1>
+			<% if flash[:notice] %>
+				<div class="alert alert-success"><%= flash[:notice] %></div>
+			<% end %>
+			<% if flash[:alert] %>
+				<div class="alert alert-danger"><%= flash[:alert] %></div>
+			<% end %>
+			<%= form_tag({:controller => "sword", :action => "create"}, :method => "post", :class => "create-item") do %>
+			  <div class="form-group">
+			    <label for="itemname">Name</label>
+			    <%= text_field_tag "itemname", nil, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="flavortext">Flavor Text</label>
+			    <%= text_field_tag "flavortext", nil, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="itemvalue">Value</label>
+			    <div>
+			    	<div class="coin">
+						<div class="platinum"></div>
+						<div class="value">
+							<%= text_field_tag "platinum", nil, class: "form-control", maxlength: 4 %>
+						</div>
+			    	</div>
+			    	<div class="coin">
+						<div class="gold"></div>
+						<div class="value">
+			    			<%= text_field_tag "gold", nil, class: "form-control", maxlength: 2 %>
+			    		</div>
+			    	</div>
+			    	<div class="coin">
+			    		<div class="silver"></div>
+			    		<div class="value">
+			    			<%= text_field_tag "silver", nil, class: "form-control", maxlength: 2 %>
+			    		</div>
+			    	</div>
+			    	<div class="clearfix"></div>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="slot">Slot</label>
+			    <%= select_tag "slot", options_for_select(@slots), class: "form-control select-slot" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputFile">Icon</label>
+			    <%= hidden_field_tag "icon", nil, class: "icon-field" %><br/>
+			    <div class="loaded-icon">
+			    	<img src="">
+			    </div>
+			    <div class="btn btn-primary load-icons">Select Icon</div>
+			    <div class="icon-box">
+			    	<div class="icon-list">
+			    		<div class="close-icon">X</div>
+			    		<ul class="onehand">
+			    			<% @onehandicons.each do |image| %>
+							   <li><%= image_tag "item_icons/#{image.split('/').last}", class: "icon" %></li>
+							<% end %>
+			    		</ul>
+			    		<ul class="twohand">
+			    			<% @twohandicons.each do |image| %>
+							   <li><%= image_tag "item_icons/#{image.split('/').last}", class: "icon" %></li>
+							<% end %>
+			    		</ul>
+			    	</div>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="speed">Speed</label>
+			    <%= text_field_tag "speed", nil, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="mindmg">Min DMG</label>
+			    <%= text_field_tag "mindmg", nil, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="maxdmg">Max DMG</label>
+			    <%= text_field_tag "maxdmg", nil, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="requiredlevel">Required Level</label>
+			    <%= text_field_tag "requiredlevel", nil, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="runebreak">Runebreak Skill Level</label>
+			    <%= text_field_tag "runebreak", nil, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="rarity">Rarity</label>
+			    <%= select_tag "rarity", options_from_collection_for_select(@rarities, "id", "name"), class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="soulbound">Soulbound</label>
+			    <%= select_tag "soulbound", options_from_collection_for_select(@soulboundtriggers, "id", "displayname"), class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <label for="weapontype">Weapon Type</label>
+			    <%= select_tag "weapontype", options_for_select(@weapontypes), class: "form-control" %>
+			  </div>
+			  <%= submit_tag "Create", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	$('.close-icon').click(function (){
+		$('.icon-list').fadeOut();
+	});
+
+	$('.load-icons').click(function (){
+		$('.icon-list').fadeToggle();
+	});
+
+	$('.icon').click(function (){
+		var formatsrc = $(this).attr('src').substring(8, $(this).attr('src').length - 4)
+		$('.icon-field').val(formatsrc);
+		$('.loaded-icon img').attr('src', $(this).attr('src'));
+		$('.icon-list').fadeOut();
+	});
+
+	$('.select-slot').change(function (){
+		if ($(this).val() == 'OneHand') {
+			$('.onehand').fadeIn();
+			$('.twohand').fadeOut();
+		} else {
+			$('.onehand').fadeOut();
+			$('.twohand').fadeIn();
+		}
+	});
+
+</script>

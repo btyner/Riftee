@@ -23,47 +23,52 @@ class ItemajaxController < ApplicationController
     
     _factionlevel = Array.new
     _factionlevel = ["Neutral", "Friendly", "Decorated", "Honored", "Revered", "Glorified"]
-    
-    @arrItem = Array.new
-    @arrItem = eval(database).retrieve(id)
+
+    @arrItem = eval(database).find(id)
+
+    @filtered = Hash.new
     
     if !@arrItem["armortype_id"].blank?
-      @arrItem["type"] = @arrItem.armortype.displayname
+      @filtered["type"] = @arrItem.armortype.displayname
     end
     if !@arrItem["weapontype_id"].blank?
-      @arrItem["type"] = @arrItem.weapontype.displayname
+      @filtered["type"] = @arrItem.weapontype.displayname
     end
-    @arrItem["slot"] = _slots[@arrItem["slot"]]
+    if !@arrItem["slot"].blank?
+      @filtered["slot"] = _slots[@arrItem["slot"]]
+    end
     
     case database
     when "Collectible"
-      @arrItem["type"] = "Collectible"
-      @arrItem["slot"] = @arrItem["itemtype"]
+      @filtered["type"] = "Collectible"
+      @filtered["slot"] = @arrItem["itemtype"]
     when "Consumable"
-      @arrItem["type"] = "Consumable"
-      @arrItem["slot"] = @arrItem["itemtype"]
+      @filtered["type"] = "Consumable"
+      @filtered["slot"] = @arrItem["itemtype"]
     end
     
-    @arrItem["rarity"] = @arrItem.rarity.name
+    @filtered["rarity"] = @arrItem.rarity.name
     if !@arrItem["soulboundtrigger_id"].blank?
-      @arrItem["soulboundtrigger"] = @arrItem.soulboundtrigger.displayname
+      @filtered["soulboundtrigger"] = @arrItem.soulboundtrigger.displayname
     end
     if !@arrItem["requiredfactionlevel"].blank?
       @arrItem["requiredfactionlevel"] = _factionlevel[@arrItem["requiredfactionlevel"]]
     end
     if !@arrItem["speed"].blank?
-      @arrItem["dps"] = ((((@arrItem["maximumdamage"] - @arrItem["minimumdamage"])/2)+@arrItem["minimumdamage"])/@arrItem["speed"]).ceil
-      @arrItem["dmgspecs"] = "#{@arrItem["minimumdamage"]}-#{@arrItem["maximumdamage"]} damage every #{@arrItem["speed"]} seconds"
+      @filtered["dps"] = ((((@arrItem["maximumdamage"] - @arrItem["minimumdamage"])/2)+@arrItem["minimumdamage"])/@arrItem["speed"]).ceil
+      @filtered["dmgspecs"] = "#{@arrItem["minimumdamage"]}-#{@arrItem["maximumdamage"]} damage every #{@arrItem["speed"]} seconds"
     end
-    tempAtt = Array.new
-    tempAtt = Enhancement.select("attribute_id, value").where("itemkey = ?", @arrItem["itemkey"])
+    #tempAtt = Array.new
+    #tempAtt = Enhancement.select("attribute_id, value").where("itemkey = ?", @arrItem["itemkey"])
     
+=begin
     @arrItem["attributes"] = tempAtt.map do |att|
       {
         'name' => att.attribute.displayname,
         'value' => att.value
       }
-    end 
+    end
+=end
         
     respond_to do |format|
       format.html

@@ -1,21 +1,21 @@
 <div id="PullItem">
 <div id="ResultItem">
-		<div class="itemdetail <%= @arrItem['rarity'] %>"><%= @arrItem['name'] %></div>
+		<div class="itemdetail <%= @filtered['rarity'] %>"><%= @arrItem['name'] %></div>
 		<div><%= @arrItem['soulboundtrigger']%></div>
 		<div style="width:224px;">
-			<div style="width:90px;float:left;"><%= @arrItem['slot']%></div>
-			<div style="width:134px;float:right;text-align:right;"><%= @arrItem['type']%></div>
+			<div style="width:90px;float:left;"><%= @filtered['slot']%></div>
+			<div style="width:134px;float:right;text-align:right;"><%= @filtered['type']%></div>
 		</div>
 		<div style="clear:both;"></div>
 		<div class="separator"></div>
 		<% if !@arrItem['armor'].blank? %>
 			<div>Armor <%= @arrItem['armor']%></div>
 		<% end %>
-		<% if !@arrItem['dps'].blank? %>
-			<div>Damage Per Second: <%= @arrItem['dps']%></div>
+		<% if !@filtered['dps'].blank? %>
+			<div>Damage Per Second: <%= @filtered['dps']%></div>
 		<% end %>
-		<% if !@arrItem['dmgspecs'].blank? %>
-			<div><%= @arrItem['dmgspecs']%></div>
+		<% if !@filtered['dmgspecs'].blank? %>
+			<div><%= @filtered['dmgspecs']%></div>
 		<% end %>
 		<% if !@arrItem['range'].blank? && @arrItem['range'] != 3 %>
 			<div><%= @arrItem['range']%> Meter Range</div>

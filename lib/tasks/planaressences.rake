@@ -15,7 +15,7 @@ namespace :db do
         pe.value = n.xpath('Value').text        
         pe.icon = n.xpath('Icon').text
         pe.slot = "Planar Essence"
-        pe.itemtype = n.xpath('RiftGem').text
+        pe.type = n.xpath('RiftGem').text
         pe.requiredlevel = n.xpath('RequiredLevel').text
         pe.runebreakskilllevel = n.xpath('RunebreakSkillLevel').text
         pe.requiredfaction = n.xpath('RequiredFaction').text

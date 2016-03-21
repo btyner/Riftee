@@ -1,4 +1,4 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
 <script src="/javascripts/jquery.hoverIntent.minified.js"></script>
 <script>
 $(document).ready(function(){
@@ -33,7 +33,7 @@ $(document).ready(function(){
 	   })
 	});
 	
-  $('#PopupTrigger').live('mouseover', function()  
+  $('td').on('mouseover', '#PopupTrigger', function()
   {  
 
 		if (!jQuery.data(this,'hoverIntentAttached'))
@@ -85,7 +85,7 @@ $(document).ready(function(){
           
   });  
   
-  $('#PopupTrigger').live('mouseout', function()  
+  $('td').on('mouseout', '#PopupTrigger', function()
   {  
       if (hideTimer)  
           clearTimeout(hideTimer);  

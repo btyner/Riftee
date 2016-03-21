@@ -6,7 +6,8 @@ Riftee::Application.routes.draw do
   get "search/index"
   get "attributes/index"
   get "sword/index"
-  get "sword/test"
+  get "sword/new"
+  post "sword/create"
   get "weapon/sword"
   get "itemajax/index"
 
